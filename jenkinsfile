@@ -12,8 +12,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                
-                sh 'npm install __'
+                sh 'npm config set proxy http://user:pass@host:port'
+                sh 'npm install'
                 sh 'npm run build'
                 
             }
