@@ -1,48 +1,24 @@
 pipeline {
     agent any
-    /* {
+    {
         docker {
-            images { 'node:lts-buster-slim' 
-
-                        
+            images { 'node:lts-buster-slim'   
             args '-p 3000:3000' 
         }
-    }*/
+    }
      environment {
         CI = 'true'
     }
     stages {
-        stage('Build') { 
-            agent{
-                docker {
-                    image 'node:lts-buster-slim'
-                    args '-p 3000:3000' 
-                }
-            }
+        stage('Build') {
             steps {
-                
-             
-          
+               
                 sh 'npm install'
                 sh 'npm run build'
                 
             }
         }
-        stage('Test') {
-            agent{
-                docker {
-                    image 'python'
-                }
-            }
-            steps {
-                sh 'pip3 install --upgrade pip'
-                sh 'pip3 install --user virtualenv'
-                sh  'virtualenv .venv'
-                sh  'source .venv/bin/activate'
-                sh  'pip install -r selenium'
-                sh  'python reacttest.py'
-            }
-        }  
+        
         
         
         
