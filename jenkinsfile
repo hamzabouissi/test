@@ -16,12 +16,13 @@ pipeline {
             agent{
                 docker {
                     image 'node:lts-buster-slim'
+                    args '-p 3000:3000' 
                 }
             }
             steps {
                 
-               sh ' npm config set proxy false'
-               sh 'npm cache clean --force'
+             
+          
                 sh 'npm install'
                 sh 'npm run build'
                 
